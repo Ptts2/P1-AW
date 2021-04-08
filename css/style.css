@@ -7,14 +7,12 @@ body{
 .blueHeader{
     font-size: 190%;
     color: rgb(46, 110, 138);
-    margin-left: 20px;
-
+    margin-left: min(3%, 25px);
 }
 
 .divTabla{
     display: flex;
 }
-
 
 .tablaPasatiempo{
     font-size: 100%;
@@ -27,15 +25,13 @@ body{
     border: 4px solid black;
     text-align: center;
     width: 5%;
-    padding:3%;
-
-    
-}
-.noborder{
-    border: 0px !important;
+    padding:3%; 
 }
 
 /*Numeros de la tabla*/
+.noborder{
+    border: 0px !important;
+}
 .filanum::after{
     font-size: 110%;
     vertical-align: -50%;
