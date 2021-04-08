@@ -1,0 +1,60 @@
+body{
+    background-color: rgb(220, 229, 234);
+    font-family: sans-serif;
+}
+
+
+.blueHeader{
+    font-size: 190%;
+    color: rgb(46, 110, 138);
+    margin-left: 20px;
+
+}
+
+.divTabla{
+    display: flex;
+}
+
+
+.tablaPasatiempo{
+    font-size: 100%;
+    border-collapse: collapse;
+    width: 35%;
+    max-width: 250px;
+}
+
+.tablaPasatiempo td{
+    border: 4px solid black;
+    text-align: center;
+    width: 5%;
+    padding:3%;
+
+    
+}
+.noborder{
+    border: 0px !important;
+}
+
+/*Numeros de la tabla*/
+.filanum::after{
+    font-size: 110%;
+    vertical-align: -50%;
+    margin: 30%;
+}
+.filanum::before{
+    font-size: 110%;
+    vertical-align: -50%;
+    margin: 35%;
+}
+#fila1::after{
+    content: "1";
+}
+#fila2::after{
+    content: "2";
+}
+#fila3::before{
+    content: "3";
+}
+#fila4::before{
+    content: "4";
+}
