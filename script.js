@@ -1,4 +1,5 @@
 
+var HINT_QTY = 3;
 
 window.onload = () => {
 
@@ -31,10 +32,9 @@ window.onload = () => {
         }, false);
     }
 
+    updateHints();
+    getCookies();
 }
-
-
-
 function checkInputLength(element, evt){
 
     if(element.innerHTML.length >= element.getAttribute('max')){
@@ -42,4 +42,61 @@ function checkInputLength(element, evt){
         evt.preventDefault();
         return false;
     }
+}
+function updateHints(used, qty){ 
+    if(HINT_QTY == 0) return false;
+    if(used) HINT_QTY--;
+    document.getElementById("remainingHints").innerHTML=HINT_QTY;
+    return true;
+}
+
+function saveCookies(){
+
+    if(confirm("Todos los datos existentes se sobreescribiran, ¿desea continuar?")){
+        var cells = document.getElementsByClassName("tableInputs");
+        for(var i in cells){
+            localStorage.setItem('cell'+i, cells[i].innerHTML);
+        }
+    }
+
+}
+
+function getCookies(){
+
+    var cells = document.getElementsByClassName("tableInputs");
+    for(var i in cells){
+        cells[i].innerHTML = localStorage.getItem('cell'+i);
+    }
+
+}
+
+function cleanCookies(){
+
+    if(confirm("Todos los datos existentes se borraran y serán irrecuperables, ¿desea continuar?")){
+        var cells = document.getElementsByClassName("tableInputs");
+        for(var i in cells){
+            localStorage.setItem('cell'+i, '');
+        }
+    }
+}
+
+function restartGame(){
+
+    if(confirm("El tablero se vaciará y se borraran los datos locales, ¿desea continuar?")){
+        HINT_QTY = 3;
+        updateHints();
+        //Limpiar tablero
+        //Limpiar caché
+    }
+}
+
+function giveHint(){
+
+    if(updateHints(true)){
+
+    }else{
+        alert("¡No te quedan pistas!");
+    }
+
+
 }

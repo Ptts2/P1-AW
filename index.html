@@ -7,20 +7,18 @@
     <link rel="stylesheet" href="./css/style.css">
     <script src="./script.js"></script>
     <title>Practica 1 - Pasatiempo en Cascada</title>
-
 </head>
 
 <body>
     <h1 class="blueHeader">En cascada</h1>
 
     <div class="divTabla">
-
             <table class="tablaPasatiempo">
                 <tbody>
 
                     <!-- Fila para mantener el tamaño de la tabla -->
                     <tr class="oculta" >
-                        <td class="noborder"></td>
+                        <td class="noborder"> </td>
                         <td class="noborder">W</td>
                         <td class="noborder">W</td>
                         <td class="noborder">W</td>
@@ -136,7 +134,16 @@
                     </tr>
                 </tbody>
             </table>
+    </div>
 
+    <div class="buttons">
+        <br>&emsp;&nbsp;&nbsp; 
+        <button onclick="javascript:saveCookies();return false;">Guardar localmente</button>
+        <button onclick="javascript:cleanCookies();return false;">Borrar almacenamiento local</button>
+        <br><br>&emsp;&nbsp;&nbsp; 
+        <button onclick="javascript:restartGame();return false;">Reiniciar partida</button>
+        <button onclick="javascript:giveHint();return false;">Pista</button> 
+        <span>Pistas restantes: </span><span id="remainingHints"></span>
     </div>
 
 
