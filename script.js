@@ -94,7 +94,7 @@ async function giveHint(){
 
     if(updateHints(true)){
 
-        getDictionaryData('//ordenalfabetix.unileon.es/aw/diccionario.txt/');
+        getDictionaryData('https://ordenalfabetix.unileon.es/aw/diccionario.txt');
 
     }else{
         alert("¡No te quedan pistas!");
@@ -104,15 +104,17 @@ async function giveHint(){
 }
 
 async function getDictionaryData(url){
-   
-    //NO FUNCIONA!
-    var inv = new XMLHttpRequest();
 
-    if(inv){
-        inv.open('GET', url, true);
-        //inv.onreadystatechange = handler;
-        inv.send();
-
-        console.log(inv.responseText);
-    }
+    var URLPRUEBA = 'https://cors-anywhere.herokuapp.com/'; //Para hacerlo desde localhost
+    fetch(URLPRUEBA + url, {
+        method: 'GET',
+        headers: new Headers({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            
+        }),
+    })
+        .then((response) => response.text())
+        .then((data) => console.log(data))
+        .catch((err) => console.log(err));
 }
