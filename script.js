@@ -90,13 +90,29 @@ function restartGame(){
     }
 }
 
-function giveHint(){
+async function giveHint(){
 
     if(updateHints(true)){
+
+        getDictionaryData('//ordenalfabetix.unileon.es/aw/diccionario.txt/');
 
     }else{
         alert("¡No te quedan pistas!");
     }
 
 
+}
+
+async function getDictionaryData(url){
+   
+    //NO FUNCIONA!
+    var inv = new XMLHttpRequest();
+
+    if(inv){
+        inv.open('GET', url, true);
+        //inv.onreadystatechange = handler;
+        inv.send();
+
+        console.log(inv.responseText);
+    }
 }
