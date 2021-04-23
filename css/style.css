@@ -45,15 +45,15 @@ body{
     vertical-align: -50%;
     margin: 35%;
 }
-#fila1::after{
+#fila1ST::after{
     content: "1";
 }
-#fila2::after{
+#fila2ST::after{
     content: "2";
 }
-#fila3::before{
+#fila3ST::before{
     content: "3";
 }
-#fila4::before{
+#fila4ST::before{
     content: "4";
 }

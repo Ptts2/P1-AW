@@ -1,5 +1,6 @@
 
 var HINT_QTY = 3;
+var dictionary;
 
 window.onload = () => {
 
@@ -17,6 +18,7 @@ window.onload = () => {
 
         }, false);
 
+        //Para chequear el input
         tableInputs[i].addEventListener("input", function(evt) {
 
             if(!(/[A-Za-zÑñÁáÉéÍíÓóÚúÜü]/).test(this.innerText)){
@@ -30,19 +32,33 @@ window.onload = () => {
             document.execCommand('selectAll', false, null);
             document.getSelection().collapseToEnd();
         }, false);
-    }
 
+        //Para checkear la palabra si se completa
+        tableInputs[i].addEventListener("input", function(evt) {
+
+            var elemClass = this.className.split(" ")[1];
+            var elemsFila = document.getElementsByClassName(elemClass);
+            var palabra = "";
+            var i = 0;
+
+            while(i<elemsFila.length){
+                if(elemsFila[i].innerHTML=="") return;
+                palabra += elemsFila[i].innerHTML;
+                i++;
+            }
+
+            if(!dictionary.includes(palabra.toLocaleLowerCase())){
+                alert("La palabra "+palabra+" no existe!!!");
+            }
+
+        }, false);
+
+    }
+    getDictionaryData('https://ordenalfabetix.unileon.es/aw/diccionario.txt');
     updateHints();
     getCookies();
 }
-function checkInputLength(element, evt){
 
-    if(element.innerHTML.length >= element.getAttribute('max')){
-
-        evt.preventDefault();
-        return false;
-    }
-}
 function updateHints(used, qty){ 
     if(HINT_QTY == 0) return false;
     if(used) HINT_QTY--;
@@ -93,9 +109,8 @@ function restartGame(){
 async function giveHint(){
 
     if(updateHints(true)){
-
-        getDictionaryData('https://ordenalfabetix.unileon.es/aw/diccionario.txt');
-
+        
+        
     }else{
         alert("¡No te quedan pistas!");
     }
@@ -105,16 +120,17 @@ async function giveHint(){
 
 async function getDictionaryData(url){
 
-    var URLPRUEBA = 'https://cors-anywhere.herokuapp.com/'; //Para hacerlo desde localhost
-    fetch(URLPRUEBA + url, {
-        method: 'GET',
-        headers: new Headers({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            
-        }),
-    })
-        .then((response) => response.text())
-        .then((data) => console.log(data))
-        .catch((err) => console.log(err));
+    if(!dictionary){
+        var URLPRUEBA = 'https://cors-anywhere.herokuapp.com/'; //Para hacerlo desde localhost
+        fetch(URLPRUEBA + url, {
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+            }),
+        })
+            .then((response) => response.text())
+            .then((data) => dictionary = data.split("\n"))
+            .catch((err) => console.log(err));
+    }
 }
