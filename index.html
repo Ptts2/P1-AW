@@ -135,7 +135,7 @@
                 </tbody>
             </table>
 
-            <div class="inputPistas">
+            <div class="inputPistas"><!-- Inputs para las pistas -->
                 <p><b>PISTAS</b></p>
                 <label for="letrasPistas">Palabras con estas letras a buscar:</label><br>
                 <input type=text id='letrasPistas' placeholder="p. ej.: a,b,j,k"></input><br><br>
@@ -143,8 +143,8 @@
                 <span>Pistas restantes: </span><span id="remainingHints"></span><br>
 
                 <br>
-                <span>Palabras que contienen las letras </span><span id="letrasContenidas"></span><span>:</span><br>
-                <textarea readonly=true cols="25" rows="21" style="resize:none"></textarea>
+                <span>Palabras que contienen las letras </span><span id="containedLetters"></span><span>:</span><br>
+                <textarea readonly=true cols="25" rows="21" style="resize:none" id="hintArea"></textarea>
             </div>
     </div>
 

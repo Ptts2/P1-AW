@@ -111,18 +111,46 @@ function restartGame(){
         for(c of cells){
             c.innerHTML ="";
         }
-
     }
 }
 
 async function giveHint(){
 
-    if(updateHints(true)){
-        
-        
-    }else{
-        alert("¡No te quedan pistas!");
+    var hint = checkAndFormatHintInput(document.getElementById('letrasPistas').value);
+    if(!hint) return alert("¡Petición de piista inválida! SEPARAR POR COMAS LAS LETRAS");
+    if(!updateHints(true)) return alert("¡No te quedan pistas!");
+    
+    var letrasContenidas ="";
+    for(letra of hint){
+        letrasContenidas += letra+", ";
     }
+    letrasContenidas = letrasContenidas.substring(0,letrasContenidas.length-2);
+    document.getElementById('containedLetters').innerHTML=letrasContenidas;
+
+    var palabrasEncajan ="";
+    for(word of dictionary){
+
+        var included = true;
+        for(letter of hint){
+            if(!word.includes(letter)){
+                included = false;
+                break;
+            }
+        }
+        if(included){
+            palabrasEncajan+= word + "\n";
+        }
+    }
+    if(palabrasEncajan=="") palabrasEncajan = "No existen palabras que contengan esas letras";
+    document.getElementById('hintArea').innerHTML=palabrasEncajan;
+    
+}
+
+function checkAndFormatHintInput(hint){
+
+    var hintF = hint.replace(/\s+/g, ''); //Eliminar espacios
+    if(! ((/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü,]+$/).test(hintF)) ) return false; //Si contiene caracteres diferentes de letras o el separador
+    return hintF.split(",");
 }
 
 async function getDictionaryData(url){
