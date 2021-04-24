@@ -3,7 +3,6 @@ body{
     font-family: sans-serif;
 }
 
-
 .blueHeader{
     font-size: 190%;
     color: rgb(46, 110, 138);
@@ -27,6 +26,10 @@ body{
     width: 35px;
     padding: 12px; 
     resize: none;
+}
+.inputPistas{
+    padding-left: 5%;
+    padding-top: 5%;
 }
 
 /*Numeros de la tabla*/

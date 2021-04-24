@@ -13,7 +13,7 @@
     <h1 class="blueHeader">En cascada</h1>
 
     <div class="divTabla">
-            <table class="tablaPasatiempo">
+            <table class="tablaPasatiempo"><!-- Tabla del pasatiempo -->
                 <tbody>
 
                     <!-- Fila para mantener el tamaño de la tabla -->
@@ -134,23 +134,35 @@
                     </tr>
                 </tbody>
             </table>
+
+            <div class="inputPistas">
+                <p><b>PISTAS</b></p>
+                <label for="letrasPistas">Palabras con estas letras a buscar:</label><br>
+                <input type=text id='letrasPistas' placeholder="p. ej.: a,b,j,k"></input><br><br>
+                <button onclick="javascript:giveHint();return false;">Pista</button> 
+                <span>Pistas restantes: </span><span id="remainingHints"></span><br>
+
+                <br>
+                <span>Palabras que contienen las letras </span><span id="letrasContenidas"></span><span>:</span><br>
+                <textarea readonly=true cols="25" rows="21" style="resize:none"></textarea>
+            </div>
     </div>
 
-    <div>
+    <div><!-- Descripciones del pasatiempo -->
         <br>&emsp;&nbsp;&nbsp; 
         <b>1. </b>Familia en escocia. <b>2. </b>Tristeza y dolor por algo. 
         <br>&emsp;&nbsp;&nbsp;  <b>3. </b>Termino algo definitivamente. <b>4. </b>El que torea.
     </div>
 
-    <div class="buttons">
+    <div class="buttons"><!-- Botones -->
         <br>&emsp;&nbsp;&nbsp; 
         <button onclick="javascript:saveCookies();return false;">Guardar localmente</button>
         <button onclick="javascript:cleanCookies();return false;">Borrar almacenamiento local</button>
         <br><br>&emsp;&nbsp;&nbsp; 
         <button onclick="javascript:restartGame();return false;">Reiniciar partida</button>
-        <button onclick="javascript:giveHint();return false;">Pista</button> 
-        <span>Pistas restantes: </span><span id="remainingHints"></span>
     </div>
+
+
 
 </body>
 
