@@ -55,8 +55,8 @@ window.onload = () => {
 
     }
     getDictionaryData('https://ordenalfabetix.unileon.es/aw/diccionario.txt');
+    loadCookies();
     updateHints();
-    getCookies();
 }
 
 function updateHints(used, qty){ 
@@ -73,17 +73,19 @@ function saveCookies(){
         for(var i in cells){
             localStorage.setItem('cell'+i, cells[i].innerHTML);
         }
+        localStorage.setItem('pistas', HINT_QTY);
     }
 
 }
 
-function getCookies(){
+function loadCookies(){
 
     var cells = document.getElementsByClassName("tableInputs");
     for(var i in cells){
         cells[i].innerHTML = localStorage.getItem('cell'+i);
     }
-
+    var pistasLocal = localStorage.getItem('pistas');
+    if(pistasLocal) HINT_QTY = pistasLocal;
 }
 
 function cleanCookies(){
@@ -93,6 +95,7 @@ function cleanCookies(){
         for(var i in cells){
             localStorage.setItem('cell'+i, '');
         }
+        localStorage.setItem('pistas', 3);
     }
 }
 
@@ -101,8 +104,14 @@ function restartGame(){
     if(confirm("El tablero se vaciará y se borraran los datos locales, ¿desea continuar?")){
         HINT_QTY = 3;
         updateHints();
+        cleanCookies();
+
         //Limpiar tablero
-        //Limpiar caché
+        var cells = document.getElementsByClassName('tableInputs');
+        for(c of cells){
+            c.innerHTML ="";
+        }
+
     }
 }
 
@@ -114,8 +123,6 @@ async function giveHint(){
     }else{
         alert("¡No te quedan pistas!");
     }
-
-
 }
 
 async function getDictionaryData(url){
