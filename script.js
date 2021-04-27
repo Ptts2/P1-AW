@@ -111,6 +111,10 @@ function restartGame(){
         for(c of cells){
             c.innerHTML ="";
         }
+
+        document.getElementById('containedLetters').innerHTML="";
+        document.getElementById('hintArea').innerText = "";
+        document.getElementById('letrasPistas').value = "";
     }
 }
 
@@ -156,16 +160,12 @@ function checkAndFormatHintInput(hint){
 async function getDictionaryData(url){
 
     if(!dictionary){
-        var URLPRUEBA = 'https://cors-anywhere.herokuapp.com/'; //Para hacerlo desde localhost
-        fetch(URLPRUEBA + url, {
-            method: 'GET',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-            }),
-        })
-            .then((response) => response.text())
-            .then((data) => dictionary = data.split("\n"))
-            .catch((err) => console.log(err));
+
+        var peticion = new XMLHttpRequest();
+        peticion.open('GET', url, true);
+        peticion.onload =()=>{
+            dictionary = peticion.responseText.split("\n")
+        };
+        peticion.send();
     }
 }
