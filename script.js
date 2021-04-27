@@ -2,7 +2,7 @@
 var HINT_QTY = 3;
 var dictionary;
 
-window.onload = () => {
+async function inicio() {
 
     var tableInputs = document.getElementsByClassName("tableInputs");
 
@@ -54,8 +54,8 @@ window.onload = () => {
         }, false);
 
     }
-    getDictionaryData('https://ordenalfabetix.unileon.es/aw/diccionario.txt');
-    loadCookies();
+    await getDictionaryData('https://ordenalfabetix.unileon.es/aw/diccionario.txt');
+    await loadCookies();
     updateHints();
 }
 
@@ -78,7 +78,7 @@ function saveCookies(){
 
 }
 
-function loadCookies(){
+async function loadCookies(){
 
     var cells = document.getElementsByClassName("tableInputs");
     for(var i in cells){
@@ -164,7 +164,7 @@ async function getDictionaryData(url){
         var peticion = new XMLHttpRequest();
         peticion.open('GET', url, true);
         peticion.onload =()=>{
-            dictionary = peticion.responseText.split("\n")
+            dictionary = peticion.responseText.split("\n");
         };
         peticion.send();
     }
