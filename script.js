@@ -1,6 +1,7 @@
 
 var HINT_QTY = 3;
 var dictionary;
+const respuestas = ["CLAN", "PENA", "REMATO", "TORERO"];
 
 async function inicio() {
 
@@ -50,6 +51,37 @@ async function inicio() {
             if(!dictionary.includes(palabra.toLocaleLowerCase())){
                 alert("La palabra "+palabra+" no existe!!!");
             }
+
+            //Checkear que esta completo
+            var cells = document.getElementsByClassName('tableInputs');
+            var bienResuelto = false;
+            var clasesFilas = ["fila1", "fila6", "fila7", "fila12"];
+
+            var palabrasEnFilas =["","","",""];
+            for(cell of cells){
+               if(cell.innerHTML==""){ 
+                    document.getElementById('spanResuelto').innerHTML="No.";
+                    return;
+                }
+                if(cell.className.split(" ")[1] == clasesFilas[0]){
+                    palabrasEnFilas[0]+=cell.innerHTML;
+                }
+                if(cell.className.split(" ")[1] == clasesFilas[1]){
+                    palabrasEnFilas[1]+=cell.innerHTML;
+                }
+                if(cell.className.split(" ")[1] == clasesFilas[2]){
+                    palabrasEnFilas[2]+=cell.innerHTML;
+                }
+                if(cell.className.split(" ")[1] == clasesFilas[3]){
+                    palabrasEnFilas[3]+=cell.innerHTML;
+                }
+            }
+
+            if(palabrasEnFilas[0].toUpperCase() == respuestas[0] && palabrasEnFilas[1].toUpperCase() == respuestas[1] && palabrasEnFilas[2].toUpperCase() == respuestas[2] && palabrasEnFilas[3].toUpperCase() == respuestas[3])
+                bienResuelto=true;
+            
+            if(bienResuelto) document.getElementById('spanResuelto').innerHTML="Si.";
+            else document.getElementById('spanResuelto').innerHTML="No.";
 
         }, false);
 
