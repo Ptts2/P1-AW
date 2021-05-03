@@ -43,7 +43,7 @@ async function inicio() {
             var i = 0;
 
             while(i<elemsFila.length){
-                if(elemsFila[i].innerHTML=="") return;
+                if(elemsFila[i].innerHTML==="") return;
                 palabra += elemsFila[i].innerHTML;
                 i++;
             }
@@ -58,8 +58,8 @@ async function inicio() {
             var clasesFilas = ["fila1", "fila6", "fila7", "fila12"];
 
             var palabrasEnFilas =["","","",""];
-            for(cell of cells){
-               if(cell.innerHTML==""){ 
+            for(let cell of cells){
+               if(cell.innerHTML===""){ 
                     document.getElementById('spanResuelto').innerHTML="No.";
                     return;
                 }
@@ -92,7 +92,7 @@ async function inicio() {
 }
 
 function updateHints(used, qty){ 
-    if(HINT_QTY == 0) return false;
+    if(HINT_QTY === 0) return false;
     if(used) HINT_QTY--;
     document.getElementById("remainingHints").innerHTML=HINT_QTY;
     return true;
@@ -140,7 +140,7 @@ function restartGame(){
 
         //Limpiar tablero
         var cells = document.getElementsByClassName('tableInputs');
-        for(c of cells){
+        for(let c of cells){
             c.innerHTML ="";
         }
 
